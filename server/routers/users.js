@@ -10,7 +10,6 @@ router.get('/',async (req, res) => {
         console.error('Error get all users:', error);
         res.status(500).json({ error: 'Error getting users' });
     }
-    // res.send('List of menu items');
 });
 
 router.post('/', async (req, res) => {
