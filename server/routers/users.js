@@ -33,9 +33,16 @@ router.post('/', async (req, res) => {
 
   
 // GET /menu/:id
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
     const menuItemId = req.params.id;
-    res.send(`Menu item with ID ${menuItemId}`);
+    try {
+        var data = await db.getUserById(menuItemId);
+        res.status(201).json({ message: 'User added successfully' , data:data});
+
+    } catch (error) {
+        console.error('Error get all users:', error);
+        res.status(500).json({ error: 'Error getting user by id' });
+    }
 });
 
 module.exports = router;
